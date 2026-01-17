@@ -21,14 +21,33 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.spaceGroteskTextTheme(),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const QuotationPage(),
-        '/quotation': (context) => const QuotationPage(),
-        '/demo': (context) => const DemoPersonaPage(),
-        '/presentation': (context) => const PitchPresentationPage(schoolName: 'MCP School', numStudents: 100),
+      onGenerateRoute: (settings) {
+        // Parse the route name
+        final routeName = settings.name ?? '/';
+        
+        switch (routeName) {
+          case '/demo':
+            return MaterialPageRoute(
+              builder: (_) => const DemoPersonaPage(),
+              settings: settings,
+            );
+          case '/presentation':
+            return MaterialPageRoute(
+              builder: (_) => const PitchPresentationPage(
+                schoolName: 'MCP School',
+                numStudents: 100,
+              ),
+              settings: settings,
+            );
+          case '/quotation':
+          case '/':
+          default:
+            return MaterialPageRoute(
+              builder: (_) => const QuotationPage(),
+              settings: settings,
+            );
+        }
       },
     );
   }
 }
-
