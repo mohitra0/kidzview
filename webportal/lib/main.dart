@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: (settings) {
         // Parse the route name
-        final routeName = settings.name ?? '/';
-        
+        final routeName = 'presentation';
+
         switch (routeName) {
           case '/demo':
             return MaterialPageRoute(
